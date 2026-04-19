@@ -1,0 +1,573 @@
+/* =====================
+   FONTS & RESET
+===================== */
+@import url('fonts/zodiak.css');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --brand-orange: #FA6A39;
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --light-grey: #f5f5f5;
+  --mid-grey: #e0e0e0;
+  --text-grey: #666;
+  --font-main: 'Zodiak', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-main);
+  color: var(--black);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: var(--font-main); }
+img { width: 100%; display: block; }
+
+/* =====================
+   ANNOUNCEMENT BAR
+===================== */
+.announcement-bar {
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 8px 40px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.announcement-arrow {
+  color: var(--white);
+  font-size: 16px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.announcement-arrow:hover { opacity: 1; }
+
+.announcement-close {
+  position: absolute;
+  right: 16px;
+  color: var(--white);
+  font-size: 12px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.announcement-close:hover { opacity: 1; }
+
+/* =====================
+   NAVBAR
+===================== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: var(--white);
+  border-bottom: 1px solid var(--mid-grey);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-left {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-left a {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: var(--black);
+  transition: color 0.2s;
+}
+.nav-left a:hover { color: var(--brand-orange); }
+
+.nav-logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--black);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-icon {
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+.nav-icon:hover { color: var(--brand-orange); }
+
+/* =====================
+   HERO
+===================== */
+.hero {
+  position: relative;
+  height: 85vh;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.9;
+}
+
+.hero-title span {
+  font-size: clamp(80px, 12vw, 160px);
+  font-weight: 700;
+  color: var(--brand-orange);
+  letter-spacing: -2px;
+}
+
+/* =====================
+   BRAND STATEMENT
+===================== */
+.brand-statement {
+  text-align: center;
+  padding: 80px 40px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.brand-tagline {
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  margin-bottom: 16px;
+  color: var(--text-grey);
+}
+
+.brand-tagline em {
+  font-style: italic;
+  color: var(--black);
+}
+
+.brand-headline {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.brand-body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-grey);
+  margin-bottom: 32px;
+}
+
+.btn-dark {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  padding: 14px 32px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  border-radius: 40px;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-dark:hover {
+  background: var(--brand-orange);
+  transform: translateY(-2px);
+}
+
+/* =====================
+   SPRING SPLIT
+===================== */
+.spring-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 70vh;
+}
+
+.spring-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.spring-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.spring-item:hover img { transform: scale(1.04); }
+
+.spring-label {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: var(--white);
+  color: var(--black);
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.spring-label:hover {
+  background: var(--brand-orange);
+  color: var(--white);
+}
+
+/* =====================
+   DISCOVER NEW IN
+===================== */
+.discover {
+  padding: 60px 40px;
+}
+
+.discover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.discover-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.discover-arrow {
+  font-size: 24px;
+  color: var(--black);
+  transition: color 0.2s;
+}
+.discover-arrow:hover { color: var(--brand-orange); }
+
+.discover-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.product-card { cursor: pointer; }
+
+.product-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: var(--light-grey);
+  aspect-ratio: 3/4;
+  margin-bottom: 12px;
+}
+
+.product-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img-wrapper img { transform: scale(1.04); }
+
+.new-in-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--white);
+  color: var(--black);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 18px;
+  color: var(--black);
+  transition: color 0.2s;
+}
+.wishlist-btn:hover { color: var(--brand-orange); }
+
+.product-name {
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.product-price {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =====================
+   C-B FEARLESS BANNER
+===================== */
+.fearless-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 50vh;
+}
+
+.fearless-left {
+  background: var(--brand-orange);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fearless-tm {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.fearless-title {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.fearless-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.fearless-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--black);
+  margin-bottom: 2px;
+}
+
+.fearless-value {
+  font-size: 10px;
+  color: var(--black);
+}
+
+.fearless-right {
+  overflow: hidden;
+}
+
+.fearless-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================
+   FEARLESS COLLECTION
+===================== */
+.fearless-collection {
+  text-align: center;
+  padding: 80px 40px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.collection-studio {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--text-grey);
+  margin-bottom: 12px;
+}
+
+.collection-title {
+  font-size: clamp(20px, 3vw, 36px);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.collection-body {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-grey);
+  margin-bottom: 32px;
+}
+
+/* =====================
+   NEWSLETTER
+===================== */
+.newsletter {
+  background: var(--light-grey);
+  text-align: center;
+  padding: 80px 40px;
+}
+
+.newsletter h3 {
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.newsletter p {
+  font-size: 13px;
+  color: var(--text-grey);
+  max-width: 480px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+.newsletter-form {
+  display: flex;
+  align-items: center;
+  max-width: 420px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 8px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-family: var(--font-main);
+  outline: none;
+  color: var(--black);
+}
+
+.newsletter-form button {
+  font-size: 20px;
+  color: var(--black);
+  transition: color 0.2s;
+}
+.newsletter-form button:hover { color: var(--brand-orange); }
+
+/* =====================
+   FOOTER
+===================== */
+.footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 60px 40px 24px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-logo {
+  position: relative;
+}
+
+.footer-logo h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.footer-tm {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  font-size: 12px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+  color: var(--white);
+}
+
+.footer-col a {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--brand-orange); }
+
+.footer-social {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 24px;
+  margin-bottom: 24px;
+}
+
+.footer-social a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--brand-orange); }
+
+.footer-social span {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 16px;
+}
