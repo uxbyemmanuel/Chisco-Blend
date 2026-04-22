@@ -7,6 +7,53 @@
   <link rel="stylesheet" href="fonts/zodiak.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* NAV LINK HOVER - underline slide from left */
+    .nav-left a {
+      position: relative;
+      padding-bottom: 4px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .nav-left a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+    .nav-left a:hover {
+      color: inherit;
+    }
+    .nav-left a:hover::after {
+      width: 100%;
+    }
+
+    /* LOGO - bolder */
+    .nav-logo {
+      font-weight: 800;
+    }
+
+    /* ICONS - remove all browser default button styling */
+    .nav-icon {
+      all: unset;
+      cursor: pointer;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    .nav-icon:hover {
+      color: inherit;
+    }
+  </style>
 </head>
 <body>
 
@@ -33,17 +80,17 @@
 
     <div class="nav-right">
       <button class="nav-icon" aria-label="Search">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
       </button>
       <button class="nav-icon" aria-label="Account">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
         </svg>
       </button>
       <button class="nav-icon" aria-label="Menu">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
