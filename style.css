@@ -151,7 +151,7 @@ img { width: 100%; display: block; }
 ===================== */
 .hero {
   position: relative;
-  height: 85vh;
+  height: 527px;
   overflow: hidden;
 }
 
@@ -164,11 +164,10 @@ img { width: 100%; display: block; }
 
 .hero-text {
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   left: 0;
   right: 0;
   text-align: center;
-  padding-bottom: 0;
 }
 
 .hero-title {
@@ -186,7 +185,7 @@ img { width: 100%; display: block; }
   color: var(--brand-orange);
   letter-spacing: -2px;
   font-family: 'Zodiak', Georgia, serif;
-  line-height: 1;
+  line-height: 0.95;
   display: block;
   position: relative;
 }
@@ -202,8 +201,8 @@ img { width: 100%; display: block; }
 }
 
 .hero-dash {
-  line-height: 0.6;
-  margin: -8px 0;
+  line-height: 0.5;
+  margin: -4px 0;
 }
 
 /* =====================
