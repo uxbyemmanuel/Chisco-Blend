@@ -151,7 +151,7 @@ img { width: 100%; display: block; }
 ===================== */
 .hero {
   position: relative;
-  height: 420px;
+  height: 527px;
   overflow: hidden;
 }
 
@@ -164,7 +164,7 @@ img { width: 100%; display: block; }
 
 .hero-text {
   position: absolute;
-  bottom: -12px;
+  bottom: -10px;
   left: 0;
   right: 0;
   text-align: center;
@@ -192,7 +192,7 @@ img { width: 100%; display: block; }
 
 .hero-tm {
   font-family: 'Inter', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: var(--brand-orange);
   position: absolute;
@@ -217,7 +217,7 @@ img { width: 100%; display: block; }
 
 .brand-tagline {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.3px;
   margin-bottom: 16px;
   color: var(--black);
@@ -225,6 +225,7 @@ img { width: 100%; display: block; }
 
 .brand-tagline em {
   font-style: normal;
+  color: var(--black);
 }
 
 .brand-headline {
@@ -255,12 +256,12 @@ img { width: 100%; display: block; }
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.5px;
-  border-radius: 40px;
+  border-radius: 8px;
   transition: background 0.2s, transform 0.2s;
 }
 
 .btn-dark:hover {
-  background: var(--brand-orange);
+  background: #333333;
   transform: translateY(-2px);
 }
 
