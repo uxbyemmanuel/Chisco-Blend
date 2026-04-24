@@ -164,7 +164,7 @@ img { width: 100%; display: block; }
 
 .hero-text {
   position: absolute;
-  bottom: -10px;
+  bottom: -12px;
   left: 0;
   right: 0;
   text-align: center;
@@ -192,7 +192,7 @@ img { width: 100%; display: block; }
 
 .hero-tm {
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: var(--brand-orange);
   position: absolute;
@@ -217,14 +217,9 @@ img { width: 100%; display: block; }
 
 .brand-tagline {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.3px;
   margin-bottom: 16px;
-  color: var(--black);
-}
-
-.brand-tagline em {
-  font-style: italic;
   color: var(--black);
 }
 
