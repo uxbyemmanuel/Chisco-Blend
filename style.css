@@ -217,7 +217,8 @@ img { width: 100%; display: block; }
 
 .brand-tagline {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
+  font-family: 'Zodiak', Georgia, serif;
   letter-spacing: 0.3px;
   margin-bottom: 16px;
   color: var(--black);
@@ -231,6 +232,7 @@ img { width: 100%; display: block; }
 .brand-headline {
   font-size: 36px;
   font-weight: 700;
+  font-family: 'Zodiak', Georgia, serif;
   letter-spacing: 1px;
   margin-bottom: 20px;
   line-height: 1.2;
