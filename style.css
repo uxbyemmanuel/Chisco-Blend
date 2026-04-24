@@ -223,6 +223,10 @@ img { width: 100%; display: block; }
   color: var(--black);
 }
 
+.brand-tagline em {
+  font-style: normal;
+}
+
 .brand-headline {
   font-size: 36px;
   font-weight: 700;
