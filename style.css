@@ -151,7 +151,7 @@ img { width: 100%; display: block; }
 ===================== */
 .hero {
   position: relative;
-  height: 527px;
+  height: 420px;
   overflow: hidden;
 }
 
@@ -164,7 +164,7 @@ img { width: 100%; display: block; }
 
 .hero-text {
   position: absolute;
-  bottom: -10px;
+  bottom: -12px;
   left: 0;
   right: 0;
   text-align: center;
@@ -231,7 +231,7 @@ img { width: 100%; display: block; }
 
 .brand-headline {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 600;
   font-family: 'Zodiak', Georgia, serif;
   letter-spacing: 1px;
   margin-bottom: 20px;
