@@ -92,55 +92,78 @@ window.addEventListener('scroll', () => {
 window.addEventListener('resize', updateSpringLabels);
 updateSpringLabels(); // run once when page loads
 
-// Discover scroll — drag to scroll + progress bar
+// Discover scroll — hover-edge auto-scroll + progress bar
+const discoverWrapper = document.querySelector('.discover-wrapper');
 const discoverScroll = document.querySelector('.discover-scroll');
+const discoverEdgeLeft = document.querySelector('.discover-edge-left');
+const discoverEdgeRight = document.querySelector('.discover-edge-right');
 const progressBar = document.querySelector('.discover-progress-bar');
 
-if (discoverScroll && progressBar) {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+if (discoverWrapper && discoverScroll && progressBar) {
+  let scrollAnimationId = null;
+  const scrollSpeed = 6; // pixels per frame — increase for faster, decrease for slower
 
-  // Mouse drag handlers
-  discoverScroll.addEventListener('mousedown', (e) => {
-    isDown = true;
-    discoverScroll.classList.add('dragging');
-    startX = e.pageX - discoverScroll.offsetLeft;
-    scrollLeft = discoverScroll.scrollLeft;
-  });
-
-  discoverScroll.addEventListener('mouseleave', () => {
-    isDown = false;
-    discoverScroll.classList.remove('dragging');
-  });
-
-  discoverScroll.addEventListener('mouseup', () => {
-    isDown = false;
-    discoverScroll.classList.remove('dragging');
-  });
-
-  discoverScroll.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - discoverScroll.offsetLeft;
-    const walk = (x - startX) * 1.5; // scroll speed multiplier
-    discoverScroll.scrollLeft = scrollLeft - walk;
-  });
-
-  // Update progress bar as user scrolls
-  function updateProgress() {
-    const maxScroll = discoverScroll.scrollWidth - discoverScroll.clientWidth;
-    if (maxScroll <= 0) {
-      progressBar.style.width = '100%';
-      return;
+  // Continuously scroll while hovering an edge
+  function startScrolling(direction) {
+    stopScrolling();
+    function step() {
+      discoverScroll.scrollLeft += scrollSpeed * direction;
+      scrollAnimationId = requestAnimationFrame(step);
     }
-    const progress = (discoverScroll.scrollLeft / maxScroll) * 100;
-    // Show progress bar as a "window" — minimum width 30%, expanding as you scroll
-    const barWidth = 30 + (progress * 0.7);
-    progressBar.style.width = barWidth + '%';
+    step();
   }
 
-  discoverScroll.addEventListener('scroll', updateProgress);
-  window.addEventListener('resize', updateProgress);
-  updateProgress(); // initial state
+  function stopScrolling() {
+    if (scrollAnimationId) {
+      cancelAnimationFrame(scrollAnimationId);
+      scrollAnimationId = null;
+    }
+  }
+
+  // Hover the right edge → scroll right
+  if (discoverEdgeRight) {
+    discoverEdgeRight.addEventListener('mouseenter', () => startScrolling(1));
+    discoverEdgeRight.addEventListener('mouseleave', stopScrolling);
+  }
+
+  // Hover the left edge → scroll left
+  if (discoverEdgeLeft) {
+    discoverEdgeLeft.addEventListener('mouseenter', () => startScrolling(-1));
+    discoverEdgeLeft.addEventListener('mouseleave', stopScrolling);
+  }
+
+  // Update progress bar + show/hide edge zones based on scroll position
+  function updateScrollState() {
+    const maxScroll = discoverScroll.scrollWidth - discoverScroll.clientWidth;
+
+    if (maxScroll <= 0) {
+      progressBar.style.width = '100%';
+      discoverWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
+      return;
+    }
+
+    const scrollLeft = discoverScroll.scrollLeft;
+    const progress = scrollLeft / maxScroll;
+
+    // Progress bar grows from 30% to 100% as you scroll
+    const barWidth = 30 + (progress * 70);
+    progressBar.style.width = barWidth + '%';
+
+    // Toggle edge visibility (small buffer of 5px to avoid flicker at the ends)
+    if (scrollLeft > 5) {
+      discoverWrapper.classList.add('can-scroll-left');
+    } else {
+      discoverWrapper.classList.remove('can-scroll-left');
+    }
+
+    if (scrollLeft < maxScroll - 5) {
+      discoverWrapper.classList.add('can-scroll-right');
+    } else {
+      discoverWrapper.classList.remove('can-scroll-right');
+    }
+  }
+
+  discoverScroll.addEventListener('scroll', updateScrollState);
+  window.addEventListener('resize', updateScrollState);
+  updateScrollState(); // run on page load
 }
