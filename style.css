@@ -329,30 +329,77 @@ img { width: 100%; display: block; }
   letter-spacing: 2px;
 }
 
+.discover-wrapper {
+  position: relative;
+}
+
 .discover-scroll {
   display: flex;
   gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding-bottom: 16px;
-  cursor: grab;
-  /* hide scrollbar but keep scrolling functionality */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .discover-scroll::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  display: none;
 }
 
-.discover-scroll.dragging {
-  cursor: grabbing;
-  scroll-behavior: auto;
+/* Hover zones at the edges — invisible buttons that trigger auto-scroll */
+.discover-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 5;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.discover-edge-left {
+  left: 0;
+  justify-content: flex-start;
+  background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0));
+  padding-left: 16px;
+}
+
+.discover-edge-right {
+  right: 0;
+  justify-content: flex-end;
+  background: linear-gradient(to left, rgba(255,255,255,0.95), rgba(255,255,255,0));
+  padding-right: 16px;
+}
+
+/* Show edge zones only when there's content to scroll to */
+.discover-wrapper.can-scroll-left .discover-edge-left { opacity: 1; }
+.discover-wrapper.can-scroll-right .discover-edge-right { opacity: 1; }
+
+.discover-edge::after {
+  content: '';
+  width: 36px;
+  height: 36px;
+  background: var(--black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.discover-edge-left::after {
+  transform: rotate(180deg);
 }
 
 .product-card {
-  flex: 0 0 calc((100% - 40px) / 3); /* 3 cards visible, accounting for 2 gaps of 20px */
+  flex: 0 0 calc((100% - 40px) / 3);
   scroll-snap-align: start;
   cursor: pointer;
 }
@@ -371,7 +418,7 @@ img { width: 100%; display: block; }
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
-  pointer-events: none; /* prevents image drag interfering with scroll */
+  pointer-events: none;
 }
 
 .product-card:hover .product-img-wrapper img { transform: scale(1.04); }
@@ -420,12 +467,11 @@ img { width: 100%; display: block; }
 
 .discover-progress-bar {
   height: 100%;
-  width: 50%;
+  width: 30%;
   background: var(--black);
   border-radius: 2px;
   transition: width 0.2s ease;
 }
-
 /* =====================
    C-B FEARLESS BANNER
 ===================== */
