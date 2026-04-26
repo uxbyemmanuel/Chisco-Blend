@@ -91,3 +91,56 @@ window.addEventListener('scroll', () => {
 });
 window.addEventListener('resize', updateSpringLabels);
 updateSpringLabels(); // run once when page loads
+
+// Discover scroll — drag to scroll + progress bar
+const discoverScroll = document.querySelector('.discover-scroll');
+const progressBar = document.querySelector('.discover-progress-bar');
+
+if (discoverScroll && progressBar) {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  // Mouse drag handlers
+  discoverScroll.addEventListener('mousedown', (e) => {
+    isDown = true;
+    discoverScroll.classList.add('dragging');
+    startX = e.pageX - discoverScroll.offsetLeft;
+    scrollLeft = discoverScroll.scrollLeft;
+  });
+
+  discoverScroll.addEventListener('mouseleave', () => {
+    isDown = false;
+    discoverScroll.classList.remove('dragging');
+  });
+
+  discoverScroll.addEventListener('mouseup', () => {
+    isDown = false;
+    discoverScroll.classList.remove('dragging');
+  });
+
+  discoverScroll.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - discoverScroll.offsetLeft;
+    const walk = (x - startX) * 1.5; // scroll speed multiplier
+    discoverScroll.scrollLeft = scrollLeft - walk;
+  });
+
+  // Update progress bar as user scrolls
+  function updateProgress() {
+    const maxScroll = discoverScroll.scrollWidth - discoverScroll.clientWidth;
+    if (maxScroll <= 0) {
+      progressBar.style.width = '100%';
+      return;
+    }
+    const progress = (discoverScroll.scrollLeft / maxScroll) * 100;
+    // Show progress bar as a "window" — minimum width 30%, expanding as you scroll
+    const barWidth = 30 + (progress * 0.7);
+    progressBar.style.width = barWidth + '%';
+  }
+
+  discoverScroll.addEventListener('scroll', updateProgress);
+  window.addEventListener('resize', updateProgress);
+  updateProgress(); // initial state
+}
