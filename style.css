@@ -273,7 +273,7 @@ img { width: 100%; display: block; }
 .spring-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 70vh;
+  height: 703px;
 }
 
 .spring-item {
@@ -300,6 +300,7 @@ img { width: 100%; display: block; }
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 1px;
+  border-radius: 8px;
   transition: background 0.2s, color 0.2s;
 }
 
