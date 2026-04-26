@@ -46,3 +46,48 @@ if (newsletterForm) {
     });
   }
 }
+
+// Spring shop labels — parallax scroll effect
+const springItems = document.querySelectorAll('.spring-item');
+
+function updateSpringLabels() {
+  springItems.forEach(item => {
+    const label = item.querySelector('.spring-label');
+    if (!label) return;
+
+    const rect = item.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Skip if section is far above or below the viewport
+    if (rect.bottom < -100 || rect.top > windowHeight + 100) return;
+
+    // Calculate scroll progress through the viewport (0 = entering, 1 = exiting)
+    const sectionHeight = rect.height;
+    const totalDistance = windowHeight + sectionHeight;
+    const scrolled = windowHeight - rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / totalDistance));
+
+    // Label movement bounds (adjust these two numbers for more/less movement)
+    const minTop = 80;                    // highest the label can go
+    const maxTop = sectionHeight - 100;   // lowest the label can go
+
+    const labelTop = minTop + (maxTop - minTop) * progress;
+
+    label.style.top = labelTop + 'px';
+    label.style.bottom = 'auto';
+  });
+}
+
+// Use requestAnimationFrame for smooth scrolling performance
+let springTicking = false;
+window.addEventListener('scroll', () => {
+  if (!springTicking) {
+    requestAnimationFrame(() => {
+      updateSpringLabels();
+      springTicking = false;
+    });
+    springTicking = true;
+  }
+});
+window.addEventListener('resize', updateSpringLabels);
+updateSpringLabels(); // run once when page loads
