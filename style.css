@@ -329,20 +329,33 @@ img { width: 100%; display: block; }
   letter-spacing: 2px;
 }
 
-.discover-arrow {
-  font-size: 24px;
-  color: var(--black);
-  transition: color 0.2s;
-}
-.discover-arrow:hover { color: var(--brand-orange); }
-
-.discover-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.discover-scroll {
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 16px;
+  cursor: grab;
+  /* hide scrollbar but keep scrolling functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
-.product-card { cursor: pointer; }
+.discover-scroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.discover-scroll.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.product-card {
+  flex: 0 0 calc((100% - 40px) / 3); /* 3 cards visible, accounting for 2 gaps of 20px */
+  scroll-snap-align: start;
+  cursor: pointer;
+}
 
 .product-img-wrapper {
   position: relative;
@@ -350,6 +363,7 @@ img { width: 100%; display: block; }
   background: var(--light-grey);
   aspect-ratio: 3/4;
   margin-bottom: 12px;
+  border-radius: 4px;
 }
 
 .product-img-wrapper img {
@@ -357,6 +371,7 @@ img { width: 100%; display: block; }
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+  pointer-events: none; /* prevents image drag interfering with scroll */
 }
 
 .product-card:hover .product-img-wrapper img { transform: scale(1.04); }
@@ -392,6 +407,23 @@ img { width: 100%; display: block; }
 .product-price {
   font-size: 13px;
   font-weight: 600;
+}
+
+/* Progress bar */
+.discover-progress {
+  margin-top: 24px;
+  height: 2px;
+  background: var(--mid-grey);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.discover-progress-bar {
+  height: 100%;
+  width: 50%;
+  background: var(--black);
+  border-radius: 2px;
+  transition: width 0.2s ease;
 }
 
 /* =====================
