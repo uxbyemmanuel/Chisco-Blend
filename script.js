@@ -95,13 +95,14 @@ updateSpringLabels(); // run once when page loads
 // Discover scroll — hover-edge auto-scroll + progress bar
 const discoverWrapper = document.querySelector('.discover-wrapper');
 const discoverScroll = document.querySelector('.discover-scroll');
+const discoverEdgeLeft = document.querySelector('.discover-edge-left');
+const discoverEdgeRight = document.querySelector('.discover-edge-right');
 const progressBar = document.querySelector('.discover-progress-bar');
 
 if (discoverWrapper && discoverScroll && progressBar) {
   let scrollAnimationId = null;
-  let scrollDirection = 0; // -1 = left, 0 = none, 1 = right
+  let scrollDirection = 0;
   const scrollSpeed = 6;
-  const edgeZoneWidth = 120; // must match CSS width of .discover-edge
 
   function animateScroll() {
     if (scrollDirection === 0) return;
@@ -110,7 +111,7 @@ if (discoverWrapper && discoverScroll && progressBar) {
   }
 
   function startScrolling(direction) {
-    if (scrollDirection === direction) return; // already going that way
+    if (scrollDirection === direction) return;
     stopScrolling();
     scrollDirection = direction;
     animateScroll();
@@ -123,6 +124,59 @@ if (discoverWrapper && discoverScroll && progressBar) {
       scrollAnimationId = null;
     }
   }
+
+  // Right edge — direct listeners
+  if (discoverEdgeRight) {
+    discoverEdgeRight.addEventListener('mouseover', () => {
+      console.log('Right edge mouseover fired');
+      startScrolling(1);
+    });
+    discoverEdgeRight.addEventListener('mouseout', () => {
+      console.log('Right edge mouseout fired');
+      stopScrolling();
+    });
+  }
+
+  // Left edge — direct listeners
+  if (discoverEdgeLeft) {
+    discoverEdgeLeft.addEventListener('mouseover', () => {
+      console.log('Left edge mouseover fired');
+      startScrolling(-1);
+    });
+    discoverEdgeLeft.addEventListener('mouseout', () => {
+      console.log('Left edge mouseout fired');
+      stopScrolling();
+    });
+  }
+
+  function updateScrollState() {
+    const maxScroll = discoverScroll.scrollWidth - discoverScroll.clientWidth;
+    if (maxScroll <= 0) {
+      progressBar.style.width = '100%';
+      discoverWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
+      return;
+    }
+    const scrollLeft = discoverScroll.scrollLeft;
+    const progress = scrollLeft / maxScroll;
+    progressBar.style.width = (30 + progress * 70) + '%';
+
+    if (scrollLeft > 5) {
+      discoverWrapper.classList.add('can-scroll-left');
+    } else {
+      discoverWrapper.classList.remove('can-scroll-left');
+    }
+    if (scrollLeft < maxScroll - 5) {
+      discoverWrapper.classList.add('can-scroll-right');
+    } else {
+      discoverWrapper.classList.remove('can-scroll-right');
+    }
+  }
+
+  discoverScroll.addEventListener('scroll', updateScrollState);
+  window.addEventListener('resize', updateScrollState);
+  window.addEventListener('load', updateScrollState);
+  updateScrollState();
+}
 
   // Track mouse position over the wrapper, decide if it's in an edge zone
   discoverWrapper.addEventListener('mousemove', (e) => {
