@@ -95,44 +95,55 @@ updateSpringLabels(); // run once when page loads
 // Discover scroll — hover-edge auto-scroll + progress bar
 const discoverWrapper = document.querySelector('.discover-wrapper');
 const discoverScroll = document.querySelector('.discover-scroll');
-const discoverEdgeLeft = document.querySelector('.discover-edge-left');
-const discoverEdgeRight = document.querySelector('.discover-edge-right');
 const progressBar = document.querySelector('.discover-progress-bar');
 
 if (discoverWrapper && discoverScroll && progressBar) {
   let scrollAnimationId = null;
-  const scrollSpeed = 6; // pixels per frame — increase for faster, decrease for slower
+  let scrollDirection = 0; // -1 = left, 0 = none, 1 = right
+  const scrollSpeed = 6;
+  const edgeZoneWidth = 120; // must match CSS width of .discover-edge
 
-  // Continuously scroll while hovering an edge
+  function animateScroll() {
+    if (scrollDirection === 0) return;
+    discoverScroll.scrollLeft += scrollSpeed * scrollDirection;
+    scrollAnimationId = requestAnimationFrame(animateScroll);
+  }
+
   function startScrolling(direction) {
+    if (scrollDirection === direction) return; // already going that way
     stopScrolling();
-    function step() {
-      discoverScroll.scrollLeft += scrollSpeed * direction;
-      scrollAnimationId = requestAnimationFrame(step);
-    }
-    step();
+    scrollDirection = direction;
+    animateScroll();
   }
 
   function stopScrolling() {
+    scrollDirection = 0;
     if (scrollAnimationId) {
       cancelAnimationFrame(scrollAnimationId);
       scrollAnimationId = null;
     }
   }
 
-  // Hover the right edge → scroll right
-  if (discoverEdgeRight) {
-    discoverEdgeRight.addEventListener('mouseenter', () => startScrolling(1));
-    discoverEdgeRight.addEventListener('mouseleave', stopScrolling);
-  }
+  // Track mouse position over the wrapper, decide if it's in an edge zone
+  discoverWrapper.addEventListener('mousemove', (e) => {
+    const rect = discoverWrapper.getBoundingClientRect();
+    const xFromLeft = e.clientX - rect.left;
+    const xFromRight = rect.right - e.clientX;
+    const canScrollLeft = discoverWrapper.classList.contains('can-scroll-left');
+    const canScrollRight = discoverWrapper.classList.contains('can-scroll-right');
 
-  // Hover the left edge → scroll left
-  if (discoverEdgeLeft) {
-    discoverEdgeLeft.addEventListener('mouseenter', () => startScrolling(-1));
-    discoverEdgeLeft.addEventListener('mouseleave', stopScrolling);
-  }
+    if (xFromRight < edgeZoneWidth && canScrollRight) {
+      startScrolling(1);
+    } else if (xFromLeft < edgeZoneWidth && canScrollLeft) {
+      startScrolling(-1);
+    } else {
+      stopScrolling();
+    }
+  });
 
-  // Update progress bar + show/hide edge zones based on scroll position
+  discoverWrapper.addEventListener('mouseleave', stopScrolling);
+
+  // Progress bar + scroll state tracking
   function updateScrollState() {
     const maxScroll = discoverScroll.scrollWidth - discoverScroll.clientWidth;
 
@@ -144,12 +155,9 @@ if (discoverWrapper && discoverScroll && progressBar) {
 
     const scrollLeft = discoverScroll.scrollLeft;
     const progress = scrollLeft / maxScroll;
-
-    // Progress bar grows from 30% to 100% as you scroll
     const barWidth = 30 + (progress * 70);
     progressBar.style.width = barWidth + '%';
 
-    // Toggle edge visibility (small buffer of 5px to avoid flicker at the ends)
     if (scrollLeft > 5) {
       discoverWrapper.classList.add('can-scroll-left');
     } else {
@@ -163,8 +171,8 @@ if (discoverWrapper && discoverScroll && progressBar) {
     }
   }
 
-discoverScroll.addEventListener('scroll', updateScrollState);
+  discoverScroll.addEventListener('scroll', updateScrollState);
   window.addEventListener('resize', updateScrollState);
-  window.addEventListener('load', updateScrollState); // re-check after images load
-  updateScrollState(); // run on page load
+  window.addEventListener('load', updateScrollState);
+  updateScrollState();
 }
