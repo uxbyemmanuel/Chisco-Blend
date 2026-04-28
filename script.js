@@ -163,7 +163,8 @@ if (discoverWrapper && discoverScroll && progressBar) {
     }
   }
 
-  discoverScroll.addEventListener('scroll', updateScrollState);
+discoverScroll.addEventListener('scroll', updateScrollState);
   window.addEventListener('resize', updateScrollState);
+  window.addEventListener('load', updateScrollState); // re-check after images load
   updateScrollState(); // run on page load
 }
