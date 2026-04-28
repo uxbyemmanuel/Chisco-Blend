@@ -1,4 +1,6 @@
-// Announcement bar close
+// =====================
+// ANNOUNCEMENT BAR CLOSE
+// =====================
 const closeBtn = document.querySelector('.announcement-close');
 const announcementBar = document.querySelector('.announcement-bar');
 
@@ -8,9 +10,12 @@ if (closeBtn && announcementBar) {
   });
 }
 
-// Navbar scroll effect
+// =====================
+// NAVBAR SCROLL EFFECT
+// =====================
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
+  if (!navbar) return;
   if (window.scrollY > 50) {
     navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
   } else {
@@ -18,7 +23,9 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Wishlist toggle
+// =====================
+// WISHLIST TOGGLE
+// =====================
 document.querySelectorAll('.wishlist-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
@@ -26,7 +33,9 @@ document.querySelectorAll('.wishlist-btn').forEach(btn => {
   });
 });
 
-// Newsletter form
+// =====================
+// NEWSLETTER FORM
+// =====================
 const newsletterForm = document.querySelector('.newsletter-form');
 if (newsletterForm) {
   newsletterForm.addEventListener('submit', (e) => {
@@ -47,7 +56,9 @@ if (newsletterForm) {
   }
 }
 
-// Spring shop labels — parallax scroll effect
+// =====================
+// SPRING SHOP LABELS — PARALLAX SCROLL
+// =====================
 const springItems = document.querySelectorAll('.spring-item');
 
 function updateSpringLabels() {
@@ -58,18 +69,15 @@ function updateSpringLabels() {
     const rect = item.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    // Skip if section is far above or below the viewport
     if (rect.bottom < -100 || rect.top > windowHeight + 100) return;
 
-    // Calculate scroll progress through the viewport (0 = entering, 1 = exiting)
     const sectionHeight = rect.height;
     const totalDistance = windowHeight + sectionHeight;
     const scrolled = windowHeight - rect.top;
     const progress = Math.max(0, Math.min(1, scrolled / totalDistance));
 
-    // Label movement bounds (adjust these two numbers for more/less movement)
-    const minTop = 80;                    // highest the label can go
-    const maxTop = sectionHeight - 100;   // lowest the label can go
+    const minTop = 80;
+    const maxTop = sectionHeight - 100;
 
     const labelTop = minTop + (maxTop - minTop) * progress;
 
@@ -78,7 +86,6 @@ function updateSpringLabels() {
   });
 }
 
-// Use requestAnimationFrame for smooth scrolling performance
 let springTicking = false;
 window.addEventListener('scroll', () => {
   if (!springTicking) {
@@ -90,139 +97,48 @@ window.addEventListener('scroll', () => {
   }
 });
 window.addEventListener('resize', updateSpringLabels);
-updateSpringLabels(); // run once when page loads
+updateSpringLabels();
 
-// Discover scroll — hover-edge auto-scroll + progress bar
-const discoverWrapper = document.querySelector('.discover-wrapper');
+// =====================
+// DISCOVER SCROLL — CLICK ARROWS + PROGRESS BAR
+// =====================
 const discoverScroll = document.querySelector('.discover-scroll');
-const discoverEdgeLeft = document.querySelector('.discover-edge-left');
-const discoverEdgeRight = document.querySelector('.discover-edge-right');
+const discoverArrowLeft = document.querySelector('.discover-arrow-left');
+const discoverArrowRight = document.querySelector('.discover-arrow-right');
 const progressBar = document.querySelector('.discover-progress-bar');
 
-if (discoverWrapper && discoverScroll && progressBar) {
-  let scrollAnimationId = null;
-  let scrollDirection = 0;
-  const scrollSpeed = 6;
-
-  function animateScroll() {
-    if (scrollDirection === 0) return;
-    discoverScroll.scrollLeft += scrollSpeed * scrollDirection;
-    scrollAnimationId = requestAnimationFrame(animateScroll);
+if (discoverScroll && discoverArrowLeft && discoverArrowRight && progressBar) {
+  function getScrollDistance() {
+    const card = discoverScroll.querySelector('.product-card');
+    if (!card) return 300;
+    const cardWidth = card.getBoundingClientRect().width;
+    return cardWidth + 20;
   }
 
-  function startScrolling(direction) {
-    if (scrollDirection === direction) return;
-    stopScrolling();
-    scrollDirection = direction;
-    animateScroll();
-  }
+  discoverArrowRight.addEventListener('click', () => {
+    discoverScroll.scrollBy({ left: getScrollDistance(), behavior: 'smooth' });
+  });
 
-  function stopScrolling() {
-    scrollDirection = 0;
-    if (scrollAnimationId) {
-      cancelAnimationFrame(scrollAnimationId);
-      scrollAnimationId = null;
-    }
-  }
-
-  // Right edge — direct listeners
-  if (discoverEdgeRight) {
-    discoverEdgeRight.addEventListener('mouseover', () => {
-      console.log('Right edge mouseover fired');
-      startScrolling(1);
-    });
-    discoverEdgeRight.addEventListener('mouseout', () => {
-      console.log('Right edge mouseout fired');
-      stopScrolling();
-    });
-  }
-
-  // Left edge — direct listeners
-  if (discoverEdgeLeft) {
-    discoverEdgeLeft.addEventListener('mouseover', () => {
-      console.log('Left edge mouseover fired');
-      startScrolling(-1);
-    });
-    discoverEdgeLeft.addEventListener('mouseout', () => {
-      console.log('Left edge mouseout fired');
-      stopScrolling();
-    });
-  }
+  discoverArrowLeft.addEventListener('click', () => {
+    discoverScroll.scrollBy({ left: -getScrollDistance(), behavior: 'smooth' });
+  });
 
   function updateScrollState() {
     const maxScroll = discoverScroll.scrollWidth - discoverScroll.clientWidth;
+
     if (maxScroll <= 0) {
       progressBar.style.width = '100%';
-      discoverWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
+      discoverArrowLeft.disabled = true;
+      discoverArrowRight.disabled = true;
       return;
     }
+
     const scrollLeft = discoverScroll.scrollLeft;
     const progress = scrollLeft / maxScroll;
     progressBar.style.width = (30 + progress * 70) + '%';
 
-    if (scrollLeft > 5) {
-      discoverWrapper.classList.add('can-scroll-left');
-    } else {
-      discoverWrapper.classList.remove('can-scroll-left');
-    }
-    if (scrollLeft < maxScroll - 5) {
-      discoverWrapper.classList.add('can-scroll-right');
-    } else {
-      discoverWrapper.classList.remove('can-scroll-right');
-    }
-  }
-
-  discoverScroll.addEventListener('scroll', updateScrollState);
-  window.addEventListener('resize', updateScrollState);
-  window.addEventListener('load', updateScrollState);
-  updateScrollState();
-}
-
-  // Track mouse position over the wrapper, decide if it's in an edge zone
-  discoverWrapper.addEventListener('mousemove', (e) => {
-    const rect = discoverWrapper.getBoundingClientRect();
-    const xFromLeft = e.clientX - rect.left;
-    const xFromRight = rect.right - e.clientX;
-    const canScrollLeft = discoverWrapper.classList.contains('can-scroll-left');
-    const canScrollRight = discoverWrapper.classList.contains('can-scroll-right');
-
-    if (xFromRight < edgeZoneWidth && canScrollRight) {
-      startScrolling(1);
-    } else if (xFromLeft < edgeZoneWidth && canScrollLeft) {
-      startScrolling(-1);
-    } else {
-      stopScrolling();
-    }
-  });
-
-  discoverWrapper.addEventListener('mouseleave', stopScrolling);
-
-  // Progress bar + scroll state tracking
-  function updateScrollState() {
-    const maxScroll = discoverScroll.scrollWidth - discoverScroll.clientWidth;
-
-    if (maxScroll <= 0) {
-      progressBar.style.width = '100%';
-      discoverWrapper.classList.remove('can-scroll-left', 'can-scroll-right');
-      return;
-    }
-
-    const scrollLeft = discoverScroll.scrollLeft;
-    const progress = scrollLeft / maxScroll;
-    const barWidth = 30 + (progress * 70);
-    progressBar.style.width = barWidth + '%';
-
-    if (scrollLeft > 5) {
-      discoverWrapper.classList.add('can-scroll-left');
-    } else {
-      discoverWrapper.classList.remove('can-scroll-left');
-    }
-
-    if (scrollLeft < maxScroll - 5) {
-      discoverWrapper.classList.add('can-scroll-right');
-    } else {
-      discoverWrapper.classList.remove('can-scroll-right');
-    }
+    discoverArrowLeft.disabled = scrollLeft <= 5;
+    discoverArrowRight.disabled = scrollLeft >= maxScroll - 5;
   }
 
   discoverScroll.addEventListener('scroll', updateScrollState);
