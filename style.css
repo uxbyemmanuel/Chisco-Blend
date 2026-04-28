@@ -360,6 +360,7 @@ img { width: 100%; display: block; }
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .discover-edge-left {
