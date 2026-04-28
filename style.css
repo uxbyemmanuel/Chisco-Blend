@@ -353,8 +353,8 @@ img { width: 100%; display: block; }
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 100px;
-  z-index: 5;
+  width: 120px;
+  z-index: 10;
   pointer-events: auto;
   display: flex;
   align-items: center;
@@ -402,6 +402,8 @@ img { width: 100%; display: block; }
   flex: 0 0 calc((100% - 40px) / 3);
   scroll-snap-align: start;
   cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 
 .product-img-wrapper {
