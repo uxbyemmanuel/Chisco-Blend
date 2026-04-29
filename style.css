@@ -464,7 +464,7 @@ img { width: 100%; display: block; }
 ===================== */
 .fearless-banner {
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 42% 58%;
   height: 50vh;
 }
 
