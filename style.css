@@ -320,6 +320,7 @@ img { width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 24px;
   margin-bottom: 32px;
 }
 
