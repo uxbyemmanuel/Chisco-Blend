@@ -313,7 +313,7 @@ img { width: 100%; display: block; }
    DISCOVER NEW IN
 ===================== */
 .discover {
-  padding: 60px 40px;
+  padding: 100px 40px 60px;
 }
 
 .discover-header {
@@ -324,9 +324,10 @@ img { width: 100%; display: block; }
 }
 
 .discover-header h3 {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.48px; /* 2% of 24px */
+  font-family: 'Zodiak', Georgia, serif;
 }
 
 .discover-arrows {
@@ -398,14 +399,15 @@ img { width: 100%; display: block; }
 
 .new-in-tag {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 16px;
+  left: 16px;
   background: var(--white);
   color: var(--black);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  font-family: 'Zodiak', Georgia, serif;
 }
 
 .wishlist-btn {
