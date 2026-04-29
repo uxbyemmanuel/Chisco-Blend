@@ -452,7 +452,7 @@ img { width: 100%; display: block; }
 ===================== */
 .fearless-banner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 40% 60%;
   height: 50vh;
 }
 
@@ -470,11 +470,19 @@ img { width: 100%; display: block; }
 }
 
 .fearless-title {
-  font-size: clamp(28px, 4vw, 52px);
+  font-size: clamp(40px, 5vw, 71px);
+  letter-spacing: -0.09em;
+  line-height: 1.215;
+  color: #050505;
+  font-family: 'Zodiak', Georgia, serif;
+}
+
+.fearless-cb {
   font-weight: 700;
-  color: var(--black);
-  letter-spacing: -1px;
-  line-height: 1;
+}
+
+.fearless-fearless {
+  font-weight: 300;
 }
 
 .fearless-details {
@@ -484,16 +492,19 @@ img { width: 100%; display: block; }
 }
 
 .fearless-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--black);
-  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+  color: #050505;
+  margin-bottom: 6px;
+  font-family: 'Zodiak', Georgia, serif;
 }
 
 .fearless-value {
-  font-size: 10px;
-  color: var(--black);
+  font-size: 11px;
+  font-weight: 300;
+  color: #050505;
+  font-family: 'Zodiak', Georgia, serif;
 }
 
 .fearless-right { overflow: hidden; }
