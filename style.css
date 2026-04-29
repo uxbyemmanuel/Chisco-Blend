@@ -20,6 +20,18 @@
   --font-main: 'Zodiak', 'Playfair Display', Georgia, serif;
 }
 
+.tm {
+  font-size: 0.25em;
+  font-weight: 400;
+  vertical-align: super;
+  letter-spacing: 0;
+  font-family: 'Inter', sans-serif;
+  display: inline-block;
+  line-height: 0;
+  position: relative;
+  top: -0.4em;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
