@@ -41,9 +41,11 @@
 
 /* Footer logo TM — sit at top-right of "Chisco" */
 .footer-logo .tm {
-  font-size: 0.2em;
-  top: -1.5em;
+  font-size: 14px;
+  top: 0;
+  vertical-align: top;
   margin-left: 2px;
+  line-height: 1;
 }
 
 html { scroll-behavior: smooth; }
