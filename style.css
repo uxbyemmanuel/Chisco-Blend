@@ -21,7 +21,7 @@
 }
 
 .tm {
-  font-size: 0.4em;
+  font-size: 0.25em;
   font-weight: 400;
   vertical-align: super;
   letter-spacing: 0;
@@ -29,7 +29,21 @@
   display: inline-block;
   line-height: 0;
   position: relative;
-  top: -0.3em;
+  top: -0.4em;
+}
+
+/* Larger TM for small text contexts */
+.nav-logo .tm,
+.newsletter h3 .tm {
+  font-size: 0.55em;
+  top: -0.5em;
+}
+
+/* Footer logo TM — sit at top-right of "Chisco" */
+.footer-logo .tm {
+  font-size: 0.2em;
+  top: -1.5em;
+  margin-left: 2px;
 }
 
 html { scroll-behavior: smooth; }
