@@ -39,13 +39,21 @@
   top: -0.5em;
 }
 
-/* Footer logo TM — sit at top-right of "Chisco" */
+/* Footer logo TM — sit at top-right edge of "Chisco" */
+.footer-chisco {
+  position: relative;
+}
+
 .footer-logo .tm {
+  position: absolute;
+  top: 4px;
+  right: -16px;
   font-size: 14px;
-  top: 0;
-  vertical-align: top;
-  margin-left: 2px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  vertical-align: baseline;
   line-height: 1;
+  margin-left: 0;
 }
 
 html { scroll-behavior: smooth; }
