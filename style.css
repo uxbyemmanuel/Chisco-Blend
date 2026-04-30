@@ -226,16 +226,6 @@ img { width: 100%; display: block; }
   position: relative;
 }
 
-.hero-tm {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--brand-orange);
-  position: absolute;
-  top: 8px;
-  right: -20px;
-}
-
 .hero-dash {
   line-height: 0.5;
   margin: -4px 0;
@@ -500,13 +490,6 @@ img { width: 100%; display: block; }
   justify-content: space-between;
 }
 
-.fearless-tm {
-  font-size: 0.25em;
-  font-weight: 400;
-  vertical-align: super;
-  margin-right: 4px;
-}
-
 .fearless-title {
   position: relative;
   font-size: clamp(40px, 5vw, 71px);
@@ -668,13 +651,6 @@ img { width: 100%; display: block; }
 }
 
 .footer-logo h2 span:hover { color: var(--brand-orange); }
-
-.footer-tm {
-  position: absolute;
-  top: -8px;
-  right: -12px;
-  font-size: 12px;
-}
 
 .footer-links { display: flex; gap: 60px; }
 
