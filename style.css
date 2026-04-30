@@ -21,7 +21,7 @@
 }
 
 .tm {
-  font-size: 0.25em;
+  font-size: 0.4em;
   font-weight: 400;
   vertical-align: super;
   letter-spacing: 0;
@@ -29,7 +29,7 @@
   display: inline-block;
   line-height: 0;
   position: relative;
-  top: -0.4em;
+  top: -0.3em;
 }
 
 html { scroll-behavior: smooth; }
