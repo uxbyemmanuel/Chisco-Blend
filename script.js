@@ -146,3 +146,25 @@ if (discoverScroll && discoverArrowLeft && discoverArrowRight && progressBar) {
   window.addEventListener('load', updateScrollState);
   updateScrollState();
 }
+
+// Mobile menu toggle
+const mobileToggle = document.querySelector('.nav-mobile-toggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.querySelector('.mobile-menu-close');
+
+if (mobileToggle && mobileMenu && mobileClose) {
+  mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+  });
+
+  mobileClose.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+  });
+
+  // Close menu when a link is clicked
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+  });
+}
