@@ -738,26 +738,41 @@ img { width: 100%; display: block; }
   }
 
   /* NAVBAR */
-  .navbar {
-    padding: 16px 20px;
-  }
+.navbar {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  /* Hide desktop nav links on mobile */
-  .nav-left {
-    display: none;
-  }
+/* Hide desktop nav links on mobile */
+.nav-left {
+  display: none;
+}
 
-  /* Show only hamburger on the left */
-  .nav-mobile-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    color: var(--black);
-  }
+/* Hamburger sits on the left where nav-left used to be */
+.nav-mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--black);
+  order: 1;
+}
+
+/* Logo stays centered */
+.nav-center {
+  order: 2;
+}
+
+/* Search/bag/account icons go on the right */
+.nav-right {
+  order: 3;
+  gap: 12px;
+}
 
   .nav-logo {
     font-size: 16px;
