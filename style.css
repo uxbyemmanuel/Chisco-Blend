@@ -826,7 +826,8 @@ img { width: 100%; display: block; }
 }
 
 .hero-text {
-  bottom: 20px;
+  bottom: 50%;
+  transform: translateY(50%);
   z-index: 2;
 }
 
