@@ -820,17 +820,27 @@ img { width: 100%; display: block; }
     color: var(--black);
   }
 
-  /* HERO */
-  .hero {
-    height: 360px;
-  }
+/* HERO */
+.hero {
+  height: 520px;
+}
 
-  .hero-chisco,
-  .hero-dash,
-  .hero-blend {
-    font-size: 56px;
-    letter-spacing: -1px;
-  }
+.hero-text {
+  bottom: -20px;
+  z-index: 2;
+}
+
+.hero-chisco,
+.hero-dash,
+.hero-blend {
+  font-size: 64px;
+  letter-spacing: -1px;
+  line-height: 0.95;
+}
+
+.hero-dash {
+  margin: -8px 0;
+}
 
   /* BRAND STATEMENT */
   .brand-statement {
