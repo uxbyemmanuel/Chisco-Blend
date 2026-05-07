@@ -822,7 +822,7 @@ img { width: 100%; display: block; }
 
 /* HERO */
 .hero {
-  height: 520px;
+  height: 360px;
 }
    
 .hero-image-wrapper {
@@ -830,7 +830,7 @@ img { width: 100%; display: block; }
 }
    
 .hero-text {
-  bottom: 50%;
+  bottom: 21%;
   transform: translateY(50%);
   z-index: 2;
 }
