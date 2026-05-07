@@ -898,14 +898,20 @@ img { width: 100%; display: block; }
   }
 
   .fearless-left {
-    padding: 32px 20px;
-    min-height: 320px;
-  }
+  padding: 24px 24px;
+  min-height: 240px;
+}
 
   .fearless-right {
     height: 280px;
   }
-
+   
+.fearless-details {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+}
+   
   .fearless-title {
     font-size: 48px;
   }
