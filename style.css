@@ -1079,19 +1079,32 @@ img { width: 100%; display: block; }
 }
 
 .footer-wordmark h2 {
-  font-family: var(--font-display);
-  font-size: 56px;
+  font-family: 'Zodiak', Georgia, serif;
   font-weight: 400;
   color: var(--white);
   letter-spacing: -1px;
+  line-height: 0.95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer-wordmark-chisco,
+.footer-wordmark-dash,
+.footer-wordmark-blend {
+  font-size: 64px;
+  line-height: 0.95;
+  display: block;
   position: relative;
-  display: inline-block;
 }
 
+.footer-wordmark-dash {
+  line-height: 0.5;
+  margin: -8px 0;
+}
 .footer-wordmark .tm {
-  font-size: 0.25em;
-  position: absolute;
-  top: 12px;
+  font-size: 0.22em;
+  position: relative;
+  top: -0.2em;
 }
 
 .footer-bottom {
