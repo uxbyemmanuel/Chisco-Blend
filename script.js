@@ -172,3 +172,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// === Footer accordions (mobile) ===
+document.addEventListener('DOMContentLoaded', () => {
+  const footerToggles = document.querySelectorAll('.footer-col-toggle');
+
+  footerToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const parentCol = toggle.closest('.footer-col');
+      if (!parentCol) return;
+
+      const isOpen = parentCol.classList.toggle('active');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+  });
+});
